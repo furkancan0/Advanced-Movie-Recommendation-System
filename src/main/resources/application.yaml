@@ -1,0 +1,104 @@
+spring:
+  application:
+    name: movie-recommendation-system
+  datasource:
+    url: jdbc:postgresql://localhost:5432/moviedb
+    username: furkan
+    password: furkan
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=1h
+    cache-names:
+      - tmdb-movie
+      - tmdb-search
+      - tmdb-popular
+      - tmdb-genre
+      - top-rated
+      - user-recommendations
+      - movie-details
+      - all-genres
+      - popular-genres
+      - popular-keywords
+      - similar-movies
+      - user-vector-recommendations
+
+rate-limit:
+  enabled: true
+  authenticated:
+    capacity: 100              # 100 requests max
+    refill-rate: 10            # Refill 10 tokens per second (600/min)
+  anonymous:
+    capacity: 20               # 20 requests max
+    refill-rate: 2             # Refill 2 tokens per second (120/min)
+
+# TMDb API Rate Limiting
+tmdb:
+  api:
+    key: bbdb93ef5a3449fd07343d95f3018f2e
+    base-url: https://api.themoviedb.org/3
+    rate-limit:
+      requests-per-second: 4   # 4 × 10 = 40 requests per 10 seconds
+      burst-capacity: 10
+
+recommendation:
+  cold-start:
+    min-genres: 3
+    popular-movies-count: 20
+  collaborative-filtering:
+    min-common-ratings: 5
+    neighbor-count: 10
+  content-based:
+    similarity-threshold: 0.6
+
+jwt:
+  secret-key: ANMGN10M0EI76QJPOOCAKRD1RJ98C6AACBIM8YYCJKMH43VTD52IRJE8N0DEOB70
+  expiration: 86400000 # 24 hours
+  refresh-expiration: 604800000 # 7 days
+
+logging:
+  level:
+    root: INFO
+    com.movieapp: DEBUG
+
+# Ollama Configuration
+ollama:
+  base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+  model: nomic-embed-text
+  chat-model: ${OLLAMA_CHAT_MODEL:llama3.2}
+  embedding-dimension: 768
+
+# Chat Configuration
+chat:
+  max-context-messages: 10
+  auto-cleanup-enabled: true
+  cleanup-days: 90
+
+# Embedding Service Configuration
+embedding:
+  batch-size: 10
+  retry-attempts: 3
+  timeout-seconds: 30
+
+google:
+  client-id: ${GOOGLE_CLIENT_ID}
+  client-secret: ${GOOGLE_CLIENT_SECRET}
