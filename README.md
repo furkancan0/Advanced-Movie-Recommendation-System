@@ -360,7 +360,7 @@ Response: "Here are excellent war movies with dramatic endings..."
 ### Caching Strategy
 - **L1 Cache** (Caffeine): In-memory, 1-hour TTL
 - **Cached Data**: Movie details, recommendations, vector search results
-- **Proper indexing
+- **Proper indexes**: Fast search
 
 ## 🔒 Security
 
