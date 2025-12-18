@@ -107,7 +107,6 @@ public class AuthenticationService {
             Optional<User> emailUser = userRepository.findByEmail(request.getEmail());
 
             if (emailUser.isPresent()) {
-                // Link Google account to existing user
                 user = emailUser.get();
                 user.setGoogleId(request.getGoogleId());
                 user.setOauthProvider("google");
@@ -116,7 +115,6 @@ public class AuthenticationService {
             } else {
                 // Create new user from Google data
                 String username = generateUsernameFromEmail(request.getEmail());
-                String[] nameParts = request.getName() != null ? request.getName().split(" ", 2) : new String[]{"", ""};
 
                 user = User.builder()
                         .username(username)

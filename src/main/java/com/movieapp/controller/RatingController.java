@@ -33,7 +33,6 @@ public class RatingController {
             @AuthenticationPrincipal User user,
             @Valid @RequestBody RatingRequest request) {
 
-        // User is guaranteed to be non-null due to Spring Security
         rateLimiter.checkRateLimit("user:" + user.getId());
 
         RatingDTO rating = ratingService.rateMovie(
@@ -69,7 +68,6 @@ public class RatingController {
             @PathVariable Long movieId,
             @AuthenticationPrincipal User user) {
 
-        // Apply rate limiting for both anonymous and authenticated
         if (user != null) {
             rateLimiter.checkRateLimit("user:" + user.getId());
         } else {

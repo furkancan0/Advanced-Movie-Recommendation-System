@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ChatRequest {
 
-    private Long conversationId; // null for new conversation
+    private Long conversationId;
 
     @NotBlank(message = "Message cannot be empty")
     @Size(max = 2000, message = "Message too long")

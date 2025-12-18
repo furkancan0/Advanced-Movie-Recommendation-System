@@ -46,18 +46,18 @@ rate-limit:
   enabled: true
   authenticated:
     capacity: 100              # 100 requests max
-    refill-rate: 10            # Refill 10 tokens per second (600/min)
+    refill-rate: 10            # Refill 10 tokens per second
   anonymous:
     capacity: 20               # 20 requests max
-    refill-rate: 2             # Refill 2 tokens per second (120/min)
+    refill-rate: 2             # Refill 2 tokens per second
 
 # TMDb API Rate Limiting
 tmdb:
   api:
-    key: bbdb93ef5a3449fd07343d95f3018f2e
+    key: ${TMDB_API_KEY}
     base-url: https://api.themoviedb.org/3
     rate-limit:
-      requests-per-second: 4   # 4 × 10 = 40 requests per 10 seconds
+      requests-per-second: 4 # 40 requests per 10 seconds
       burst-capacity: 10
 
 recommendation:
@@ -71,7 +71,7 @@ recommendation:
     similarity-threshold: 0.6
 
 jwt:
-  secret-key: ANMGN10M0EI76QJPOOCAKRD1RJ98C6AACBIM8YYCJKMH43VTD52IRJE8N0DEOB70
+  secret-key: ${JWT_SECRET_KEY}
   expiration: 86400000 # 24 hours
   refresh-expiration: 604800000 # 7 days
 

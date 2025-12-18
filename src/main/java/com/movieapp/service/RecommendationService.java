@@ -60,7 +60,6 @@ public class RecommendationService {
     private List<Genre> getPreferredGenresFromRatings(Long userId) {
         List<Rating> userRatings = ratingRepository.findByUserId(userId);
 
-        // Map: Genre -> Total weighted score
         Map<Long, Double> genreScores = new HashMap<>();
         Map<Long, Genre> genreMap = new HashMap<>();
 

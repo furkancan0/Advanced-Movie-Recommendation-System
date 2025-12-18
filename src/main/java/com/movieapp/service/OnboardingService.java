@@ -31,14 +31,14 @@ public class OnboardingService {
 
     // Genre -> TMDb ID mapping for famous movies
     private static final Map<String, List<Long>> FAMOUS_MOVIES_BY_GENRE = Map.ofEntries(
-            Map.entry("Action", Arrays.asList(155L, 24428L, 198L, 680L, 47933L)),           // The Dark Knight, The Avengers, Die Hard, Pulp Fiction, Independence Day
-            Map.entry("Drama", Arrays.asList(278L, 240L, 389L, 19404L, 13L)),               // Shawshank, Godfather, Green Mile, Dilwale, Forrest Gump
-            Map.entry("Comedy", Arrays.asList(637L, 105L, 115L, 96L, 274L)),                // Life is Beautiful, Back to the Future, Big Lebowski, Beverly Hills, Silence of the Lambs
-            Map.entry("Sci-Fi", Arrays.asList(424L, 603L, 329L, 280L, 27205L)),             // Schindler's, Matrix, Jurassic Park, Terminator, Inception
-            Map.entry("Horror", Arrays.asList(694L, 539L, 346L, 4232L, 745L)),              // The Shining, Psycho, Heat, Prestige, Sixth Sense
-            Map.entry("Romance", Arrays.asList(597L, 8681L, 10681L, 207L, 238L)),           // Titanic, Amélie, WALL-E, Dead Poets, Godfather II
-            Map.entry("Thriller", Arrays.asList(680L, 807L, 769L, 745L, 77L)),              // Pulp Fiction, Se7en, GoodFellas, Sixth Sense, Memento
-            Map.entry("Animation", Arrays.asList(12L, 585L, 129L, 10681L, 49026L))          // Finding Nemo, Monsters Inc, Spirited Away, WALL-E, The Dark Knight Rises
+            Map.entry("Action", Arrays.asList(155L, 24428L, 198L, 680L, 47933L)),
+            Map.entry("Drama", Arrays.asList(278L, 240L, 389L, 19404L, 13L)),
+            Map.entry("Comedy", Arrays.asList(637L, 105L, 115L, 96L, 274L)),
+            Map.entry("Sci-Fi", Arrays.asList(424L, 603L, 329L, 280L, 27205L)),
+            Map.entry("Horror", Arrays.asList(694L, 539L, 346L, 4232L, 745L)),
+            Map.entry("Romance", Arrays.asList(597L, 8681L, 10681L, 207L, 238L)),
+            Map.entry("Thriller", Arrays.asList(680L, 807L, 769L, 745L, 77L)),
+            Map.entry("Animation", Arrays.asList(12L, 585L, 129L, 10681L, 49026L))
     );
 
     private static final int MIN_RATINGS_FOR_ONBOARDING = 10;

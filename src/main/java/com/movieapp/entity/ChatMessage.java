@@ -33,7 +33,6 @@ public class ChatMessage {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    // Store extracted movie IDs from assistant response
     @ElementCollection
     @CollectionTable(name = "message_movie_refs", joinColumns = @JoinColumn(name = "message_id"))
     @Column(name = "movie_id")

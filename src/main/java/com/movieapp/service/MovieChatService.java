@@ -73,11 +73,9 @@ public class MovieChatService {
         assistantMsg.setReferencedMovieIds(referencedMovieIds);
         messageRepository.save(assistantMsg);
 
-        // Step 9: Update message count
-        //conversation.setMessageCount(conversation.getMessages().size());
         conversationRepository.save(conversation);
 
-        // Step 10: Build response with suggested movies
+        // Step 9: Build response with suggested movies
         List<MovieDTO> suggestedMovies = relevantMovies.stream()
                 .limit(10)
                 .map(this::mapToMovieDTO)

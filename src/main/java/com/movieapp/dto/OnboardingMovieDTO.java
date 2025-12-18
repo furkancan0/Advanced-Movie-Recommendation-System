@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OnboardingMovieDTO {
     private MovieDTO movie;
-    private String genreName; // Primary genre for context
+    private String genreName;
 }

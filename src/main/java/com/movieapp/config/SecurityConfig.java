@@ -46,7 +46,6 @@ public class SecurityConfig {
                     // Authentication endpoints
                     .requestMatchers("/api/auth/**").permitAll()
 
-                    // Public movie endpoints (anyone can browse)
                     .requestMatchers(HttpMethod.GET, "/api/movies/**").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/movies/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/movies/search").permitAll()
@@ -54,22 +53,15 @@ public class SecurityConfig {
 
                     .requestMatchers(HttpMethod.GET, "/api/onboarding/**").permitAll()
 
-                    // Anyone can see movie ratings (but only authenticated can rate)
                     .requestMatchers(HttpMethod.GET, "/api/ratings/movie/**").permitAll()
 
-                    // Public user endpoints
-
-                    // Actuator health endpoint
                     .requestMatchers("/actuator/health").permitAll()
 
-                    // ============ ADMIN ONLY ENDPOINTS ============
                     .requestMatchers("/api/admin/**").permitAll()
 
-                    // ============ MODERATOR ENDPOINTS ============
                     .requestMatchers("/api/moderator/**").hasAnyRole("ADMIN", "MODERATOR")
 
                     .requestMatchers("/api/auth/google-login").permitAll()
-                    // Everything else requires authentication
                     .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

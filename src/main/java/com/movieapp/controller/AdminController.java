@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/admin/chat")
 @RequiredArgsConstructor
-//@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
     private final OllamaEmbeddingService ollamaService;

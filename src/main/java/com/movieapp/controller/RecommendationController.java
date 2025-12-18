@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +35,6 @@ public class RecommendationController {
         List<MovieDTO> recommendations = recommendationService
                 .getRecommendationsForUser(user.getId(), limit);
 
-        // Return empty list if user has no activity (ratings)
         if (recommendations.isEmpty()) {
             return ResponseEntity.ok(recommendations); // Returns []
         }

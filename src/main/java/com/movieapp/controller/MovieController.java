@@ -35,7 +35,6 @@ public class MovieController {
             @PathVariable Long id,
             @AuthenticationPrincipal User user) {
 
-        // Apply different rate limits for anonymous vs authenticated
         if (user != null) {
             rateLimiter.checkRateLimit("user:" + user.getId());
             System.out.println("user:" + user.getUsername());
@@ -52,7 +51,6 @@ public class MovieController {
             @PathVariable Long id,
             @AuthenticationPrincipal User user) {
 
-        // Apply different rate limits for anonymous vs authenticated
         if (user != null) {
             rateLimiter.checkRateLimit("user:" + user.getId());
             System.out.println("user:" + user.getUsername());
@@ -67,7 +65,7 @@ public class MovieController {
     @GetMapping("/tmdb/{tmdbId}")
     public ResponseEntity<MovieDTO> getMovieByTmdbId(
             @PathVariable Long tmdbId,
-            @AuthenticationPrincipal User user) throws InterruptedException {
+            @AuthenticationPrincipal User user) {
 
         if (user != null) {
             rateLimiter.checkRateLimit("user:" + user.getId());

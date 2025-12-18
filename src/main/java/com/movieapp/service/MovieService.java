@@ -7,11 +7,9 @@ import com.movieapp.entity.Genre;
 import com.movieapp.entity.Keyword;
 import com.movieapp.entity.Movie;
 import com.movieapp.mapper.MovieMapper;
-import com.movieapp.repository.GenreRepository;
 import com.movieapp.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,29 +31,6 @@ public class MovieService {
     private final MovieEmbeddingService embeddingService;
     private final MovieMapper movieMapper;
 
-    // Bayesian Average parameters
-    @Value("${recommendation.bayesian.min-votes:25}")
-    private int minimumVotes; // C: Minimum votes required (confidence threshold)
-
-    @Value("${recommendation.bayesian.global-mean:3.5}")
-    private double globalMeanRating; // m: Global average rating across all movies
-
-    /**
-     * Calculate Bayesian Average (Weighted Rating)
-     * Formula: WR = (v / (v + m)) * R + (m / (v + m)) * C
-     * */
-    public double calculateBayesianAverage(double avgRating, int voteCount) {
-        if (voteCount == 0) {
-            return globalMeanRating; // No votes = global average
-        }
-
-        // WR = (v / (v + m)) * R + (m / (v + m)) * C
-        double weightedRating =
-                ((double) voteCount / (voteCount + minimumVotes)) * avgRating +
-                        ((double) minimumVotes / (voteCount + minimumVotes)) * globalMeanRating;
-
-        return Math.round(weightedRating * 100.0) / 100.0; // Round to 2 decimals
-    }
 
     @Cacheable(value = "movie-details", key = "#movieId")
     public MovieDTO getMovie(Long movieId) {
@@ -103,20 +78,6 @@ public class MovieService {
     public Page<MovieDTO> searchMovies(String query, Pageable pageable) {
         // Search local database first
         Page<Movie> localResults = movieRepository.searchByTitle(query, pageable);
-
-        if (localResults.isEmpty()) {
-            // If no local results, search TMDb
-            log.info("No local results for query '{}', searching TMDb", query);
-            List<MovieDTO> tmdbResults = tmDbClient.searchMovies(query, 1);
-
-            // Save new movies to database
-            tmdbResults.forEach(dto -> {
-                if (movieRepository.findByTmdbId(dto.getTmdbId()).isEmpty()) {
-                    MovieDTO movieDTO = saveMovieFromTMDb(dto);
-                    fetchAndSaveKeywordsForMovie(movieDTO.getId());
-                }
-            });
-        }
 
         return localResults.map(movieMapper::mapToDTO);
     }
@@ -352,32 +313,5 @@ public class MovieService {
         newKeywords.forEach(keyword -> keywordService.incrementMovieCount(keyword.getId()));
 
         log.info("Successfully saved {} keywords for movie: {}", newKeywords.size(), movie.getTitle());
-    }
-
-    /**
-     * Batch fetch and save keywords for multiple movies
-     */
-    @Transactional
-    public void fetchAndSaveKeywordsForMovies(List<Long> movieIds) {
-        log.info("Batch fetching keywords for {} movies", movieIds.size());
-
-        int successCount = 0;
-        int failCount = 0;
-
-        for (Long movieId : movieIds) {
-            try {
-                fetchAndSaveKeywordsForMovie(movieId);
-                successCount++;
-
-                // Add delay to respect rate limits
-                Thread.sleep(250);
-
-            } catch (Exception e) {
-                log.error("Error fetching keywords for movie {}: {}", movieId, e.getMessage());
-                failCount++;
-            }
-        }
-
-        log.info("Batch keyword fetch completed: {} successful, {} failed", successCount, failCount);
     }
 }

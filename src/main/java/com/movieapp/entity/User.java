@@ -40,7 +40,7 @@ public class User implements UserDetails {
     private String googleId;
 
     @Column(name = "oauth_provider")
-    private String oauthProvider; // "google", "local", etc.
+    private String oauthProvider; // "google", "local"
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -55,7 +55,6 @@ public class User implements UserDetails {
     @Column(name = "onboarding_completed")
     private Boolean onboardingCompleted = false;
 
-    // User preference vector (weighted average of rated movies)
     @Column(name = "preference_vector", columnDefinition = "vector(768)")
     @Type(value = com.movieapp.util.PGvectorType.class)
     private PGvector preferenceVector;
