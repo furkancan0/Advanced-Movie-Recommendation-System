@@ -28,9 +28,10 @@ A production-ready, full-stack movie recommendation platform powered by **Spring
 - **Smart Rating System**: 5-star ratings with automatic recommendation updates
 - **Bookmarking**: Save movies to watch later
 - **Vector Similarity Search**: Find movies by semantic meaning
-- **Multi-layer Caching**: Caffeine + Redis for optimal performance
+- **Multi-layer Caching**: Caffeine for optimal performance
 - **Rate Limiting**: Protect API with Bucket4j
 - **JWT Authentication**: Secure with role-based access (USER, MODERATOR, ADMIN)
+- **Google Authentication**: Basic google auth
 
 ## 🏗️ Architecture
 
@@ -69,7 +70,7 @@ A production-ready, full-stack movie recommendation platform powered by **Spring
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/movie-recommendation-system.git
+git clone https://github.com/username/movie-recommendation-system.git
 cd movie-recommendation-system
 ```
 
@@ -361,7 +362,7 @@ Response: "Here are excellent war movies with dramatic endings..."
 
 ### Caching Strategy
 - **L1 Cache** (Caffeine): In-memory, 1-hour TTL
-- **Cached Data**: Movie details, recommendations, vector search results
+- **Cached Data**: Movie details, recommendations, vector search results...
 - **Proper indexes**: Fast search
 
 ## 🔒 Security
@@ -418,6 +419,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [pgvector](https://github.com/pgvector/pgvector) - Vector similarity search
 - [Spring Boot](https://spring.io/projects/spring-boot) - Application framework
 - Inspired by [MovieLens](https://movielens.org/) and [JustWatch](https://www.justwatch.com/)
-
-
-**Built with ❤️ using Spring Boot, PostgreSQL, and Ollama**
