@@ -61,8 +61,8 @@ A production-ready, full-stack movie recommendation platform powered by **Spring
 ### Prerequisites
 
 - Java 17+
-- Maven 3.8+
-- PostgreSQL 14+
+- Maven 3.8
+- PostgreSQL 16
 - [Ollama](https://ollama.com) (for AI features)
 - TMDb API Key ([Get one here](https://www.themoviedb.org/settings/api))
 
@@ -121,18 +121,6 @@ mvn flyway:migrate
 
 # Start application
 mvn spring-boot:run
-```
-
-The application will start on `http://localhost:8080`
-
-### 6. Seed Database with Movies (Optional)
-
-```bash
-# Seed 1000 movies from TMDb
-curl -X POST http://localhost:8080/api/admin/seeder/seed \
-  -H "Authorization: Bearer {admin_token}" \
-  -H "Content-Type: application/json" \
-  -d '{"totalMovies": 1000}'
 ```
 
 ## 📖 API Documentation
@@ -372,6 +360,7 @@ Response: "Here are excellent war movies with dramatic endings..."
 ### Caching Strategy
 - **L1 Cache** (Caffeine): In-memory, 1-hour TTL
 - **Cached Data**: Movie details, recommendations, vector search results
+- **Proper indexing
 
 ## 🔒 Security
 
