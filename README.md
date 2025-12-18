@@ -102,12 +102,14 @@ psql -d moviedb -c "CREATE EXTENSION vector;"
 Create a `.env` file or export:
 
 ```bash
-export TMDB_API_KEY=your_tmdb_api_key_here
+export TMDB_API_KEY=your_tmdb_api_key
 export JWT_SECRET_KEY=$(openssl rand -base64 32)
 export DB_URL=jdbc:postgresql://localhost:5432/moviedb
 export DB_USERNAME=postgres
 export DB_PASSWORD=your_password
 export OLLAMA_BASE_URL=http://localhost:11434
+export GOOGLE_CLIENT_ID=your_google_client_id
+export GOOGLE_CLIENT_SECRET=your_google_client_secret
 ```
 
 ### 5. Build & Run
@@ -367,12 +369,13 @@ Response: "Here are excellent war movies with dramatic endings..."
 ### Authentication
 - JWT tokens (24-hour access, 7-day refresh)
 - BCrypt password hashing
-- Role-based access control (USER, MODERATOR, ADMIN)
+- Role-based access control (USER, MODERATOR, ADMIN
+- Google authentication
 
 ### Rate Limiting
 - 100 requests/minute per user (default)
 - 20 requests/minute for chat
-- TMDb API: 40 requests/10 seconds (auto-managed)
+- TMDb API: 40 requests/10 seconds 
 
 ### Data Protection
 - SQL injection prevention (JPA/Hibernate)
