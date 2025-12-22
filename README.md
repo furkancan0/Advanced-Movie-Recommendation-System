@@ -1,4 +1,4 @@
-# 🎬 Advanced Movie Recommendation System
+# Advanced Movie Recommendation System
 
 A production-ready, full-stack movie recommendation platform powered by **Spring Boot**, **PostgreSQL**, **pgvector**, and **Ollama AI**. Features dual recommendation engines, RAG-powered chat assistant, and comprehensive movie discovery tools.
 
@@ -7,15 +7,15 @@ A production-ready, full-stack movie recommendation platform powered by **Spring
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue.svg)](https://www.postgresql.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 🌟 Key Features
+## Key Features
 
-### 🤖 Dual AI-Powered Recommendations
+### Dual AI-Powered Recommendations
 - **Genre-Based Engine**: Collaborative + content-based filtering using user ratings
 - **Vector-Based Engine**: Semantic similarity using 768-dim embeddings (Ollama)
 - Automatic cold-start handling with popular movies
 - Real-time preference learning from user ratings
 
-### 💬 RAG-Powered Movie Mentor
+### RAG-Powered Movie Mentor
 - Natural language movie queries with context-aware responses
 - Single persistent conversation per user (mentor-style)
 - Semantic search using vector embeddings
@@ -23,7 +23,7 @@ A production-ready, full-stack movie recommendation platform powered by **Spring
 - Topic validation (rejects non-movie queries)
 - Full conversation history with context retention
 
-### 🎯 Core Features
+### Core Features
 - **Movie Discovery**: Search 1000+ movies with TMDb integration
 - **Smart Rating System**: 5-star ratings with automatic recommendation updates
 - **Bookmarking**: Save movies to watch later
@@ -33,7 +33,7 @@ A production-ready, full-stack movie recommendation platform powered by **Spring
 - **JWT Authentication**: Secure with role-based access (USER, MODERATOR, ADMIN)
 - **Google Authentication**: Basic google auth
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -57,7 +57,7 @@ A production-ready, full-stack movie recommendation platform powered by **Spring
 └──────────────┘ └──────────────┘ └──────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -268,7 +268,7 @@ POST /api/bookmarks/movie/{movieId}
 Authorization: Bearer {token}
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### application.yml
 
@@ -297,7 +297,7 @@ cache:
   type: caffeine  # or redis for distributed
 ```
 
-## 📊 Database Schema
+## Database Schema
 
 ### Core Tables
 - `users` - User accounts with JWT authentication
@@ -315,7 +315,7 @@ cache:
 - **Full-text search**: pg_trgm for movie titles
 - **Optimistic locking**: Prevent concurrent update issues
 
-## 🧠 How It Works
+## How It Works
 
 ### Recommendation Engines
 
@@ -365,7 +365,7 @@ Response: "Here are excellent war movies with dramatic endings..."
 - **Cached Data**: Movie details, recommendations, vector search results...
 - **Proper indexes**: Fast search
 
-## 🔒 Security
+## Security
 
 ### Authentication
 - JWT tokens (24-hour access, 7-day refresh)
@@ -383,7 +383,7 @@ Response: "Here are excellent war movies with dramatic endings..."
 - Input validation (Jakarta Validation)
 - CORS configuration for production
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ### Using Docker Compose
 
@@ -391,28 +391,12 @@ Response: "Here are excellent war movies with dramatic endings..."
 docker-compose up -d
 ```
 
-## 📈 Monitoring
+## Monitoring
 
 ### Actuator Endpoints
 - `/actuator/health` - Application health
 - `/actuator/metrics` - Performance metrics
 - `/actuator/caches` - Cache statistics
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some MovieFeature'`)
-4. Push to the branch (`git push origin feature/MovieFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
 
 - [TMDb](https://www.themoviedb.org/) - Movie data API
 - [Ollama](https://ollama.com/) - Local LLM inference
