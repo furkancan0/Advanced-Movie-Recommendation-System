@@ -1,14 +1,5 @@
 # Advanced Movie Recommendation System
 
-A production-ready, full-stack movie recommendation platform powered by **Spring Boot**, **PostgreSQL**, **pgvector**, and **Ollama AI**. Features dual recommendation engines, RAG-powered chat assistant, and comprehensive movie discovery tools.
-
-[![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue.svg)](https://www.postgresql.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-## Key Features
-
 ### Dual AI-Powered Recommendations
 - **Genre-Based Engine**: Collaborative + content-based filtering using user ratings
 - **Vector-Based Engine**: Semantic similarity using 768-dim embeddings (Ollama)
@@ -294,7 +285,7 @@ ollama:
   embedding-dimension: 768
 
 cache:
-  type: caffeine  # or redis for distributed
+  type: caffeine
 ```
 
 ## Database Schema
