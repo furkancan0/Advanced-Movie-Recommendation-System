@@ -23,10 +23,10 @@
                         │ REST API + JWT
                         ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                   Spring Boot Application                    │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  Controllers │  │   Services   │  │ Repositories │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│                   Spring Boot Application                   │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │  Controllers │  │   Services   │  │ Repositories │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └───────────────────────┬─────────────────────────────────────┘
                         │
         ┌───────────────┼───────────────┐
@@ -37,14 +37,14 @@
 │              │ │ nomic-embed  │ │              │
 └──────────────┘ └──────────────┘ └──────────────┘
 ```
-Variables
-Create a `.env` file or export:
+Variables  
+Create a `.env` file or export:  
 
-TMDB_API_KEY=your_tmdb_api_key
-JWT_SECRET_KEY=$(openssl rand -base64 32)
-DB_URL=jdbc:postgresql://localhost:5432/moviedb
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
-OLLAMA_BASE_URL=http://localhost:11434
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
+TMDB_API_KEY=your_tmdb_api_key  
+JWT_SECRET_KEY=$(openssl rand -base64 32)  
+DB_URL=jdbc:postgresql://localhost:5432/moviedb  
+DB_USERNAME=postgres  
+DB_PASSWORD=your_password  
+OLLAMA_BASE_URL=http://localhost:11434  
+GOOGLE_CLIENT_ID=your_google_client_id  
+GOOGLE_CLIENT_SECRET=your_google_client_secret  
